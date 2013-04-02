@@ -4,15 +4,15 @@ Connecting a computer without WLAN to a WLAN access point
 
 ## Introduction
 
-Wireless network clients don't have bridging capabilities, because the network adapter cannot change it's MAC-address. However, it is possible to "bridge" a single computer over Wireless, by not using the wireless adapter locally and forwarding all the packet to a destination computer.
+Wireless network clients don't have bridging capabilities, because the network adapter cannot change it's MAC-address. However, it is possible to »bridge« a single computer over Wireless, by not using the wireless adapter locally and forwarding all the packet to a destination computer.
 
-WLAN_Kabel implements this use case. It allows to connect a computer without any Wireless adapters to a Wireless LAN using a "proxy" device, such as a netbook, equipped with both Ethernet and Wireless.
+WLAN_Kabel implements this use case. It allows to connect a computer without any Wireless adapters to a Wireless LAN using a »proxy« device, such as a netbook, equipped with both Ethernet and Wireless.
 
 ![Diagram of how to connect your Ethernet capable device to a WLAN](wlan_kabel.png)
 
 ## Usage
 
-You can compile WLAN_Kabel by just entering "make". You will probably need make, a C-compiler and kernel headers installed.
+You can compile WLAN_Kabel by just entering `make`. You will probably need make, a C-compiler and kernel headers installed.
 
 To use WLAN_Kabel, you have to install it on the proxy device. Both the Wireless and the Ethernet adapter must be up, but not configured for any IP addresses. You can then start as root it like this:
 
@@ -20,7 +20,7 @@ To use WLAN_Kabel, you have to install it on the proxy device. Both the Wireless
 
 Example:
 
-`\# ./wlan_kabel wlan0 eth0 00:22:15:49:e5:55`
+`# ./wlan_kabel wlan0 eth0 00:22:15:49:e5:55`
 
 You can then connect your computer to the proxy device with a patch cable and bring it up normally - it will work with DHCP, etc.
 
