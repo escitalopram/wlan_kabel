@@ -8,9 +8,11 @@ Wireless network clients don't have bridging capabilities, because the network a
 
 WLAN_Kabel implements this use case. It allows to connect a computer without any Wireless adapters to a Wireless LAN using a "proxy" device, such as a netbook, equipped with both Ethernet and Wireless.
 
+![Diagram of how to connect your Ethernet capable device to a WLAN](wlan_kabel.png)
+
 ## Usage
 
-You can compile WLAN_Kabel by just entering "make". You will probably need make, a c-compiler and kernel headers installed.
+You can compile WLAN_Kabel by just entering "make". You will probably need make, a C-compiler and kernel headers installed.
 
 To use WLAN_Kabel, you have to install it on the proxy device. Both the Wireless and the Ethernet adapter must be up, but not configured for any IP addresses. You can then start as root it like this:
 
