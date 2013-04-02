@@ -10,6 +10,13 @@ WLAN_Kabel implements this use case. It allows to connect a computer without any
 
 ![Diagram of how to connect your Ethernet capable device to a WLAN](wlan_kabel.png)
 
+## Limitations
+
+WLAN_Kabel will only work for one single network device. It will not work with multiple devices, not even with virtualized ones.
+
+If you want to bridge multiple devices, you'll have to use 4addr mode on the WLAN device instead of WLAN_Kabel. However, in practise this is often not an option, because almost every AP will completely ignore any 4addr packets per default for security reasons. WLAN_Kabel, on the other hand, will work with every AP out of the box.
+
+
 ## Usage
 
 You can compile WLAN_Kabel by just entering `make`. You will probably need make, a C-compiler and kernel headers installed.
@@ -25,10 +32,6 @@ Example:
 You can then connect your computer to the proxy device with a patch cable and bring it up normally - it will work with DHCP, etc.
 
 WLAN_Kabel has been tested on an ATH9K chipset with Ubuntu 10.10
-
-## Limitations
-
-WLAN_Kabel will only work for one single network device. It will not work with multiple devices, not even with virtualized ones.
 
 ## License
 
