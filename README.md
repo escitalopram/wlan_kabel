@@ -31,7 +31,10 @@ Example:
 
 You can then connect your computer to the proxy device with a patch cable and bring it up normally - it will work with DHCP, etc.
 
-WLAN_Kabel has been tested on an ATH9K chipset with Ubuntu 10.10
+WLAN_Kabel has been tested on:
+
+-  ATH9K chipset with Ubuntu 10.10 
+-  Ralink RT2870 on a Raspberry Pi
 
 ## License
 
