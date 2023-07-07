@@ -28,7 +28,7 @@ To use WLAN_Kabel, you have to install it on the proxy device. Both the Wireless
 Example:
 
 `# ./wlan_kabel wlan0 eth0 00:22:15:49:e5:55`
- # ./wlan_kabel wlan0 eth0 00:22:15:49:e5:55 1500
+`# ./wlan_kabel wlan0 eth0 00:22:15:49:e5:55 1500`
 
 You can then connect your computer to the proxy device with a patch cable and bring it up normally - it will work with DHCP, etc.
 
