@@ -23,11 +23,12 @@ You can compile WLAN_Kabel by just entering `make`. You will probably need make,
 
 To use WLAN_Kabel, you have to install it on the proxy device. Both the Wireless and the Ethernet adapter must be up, but not configured for any IP addresses. You can then start as root it like this:
 
-`# ./wlan_kabel <wlan-adapter> <ethernet-adapter> <MAC of device to connect>`
+`# ./wlan_kabel <wlan-adapter> <ethernet-adapter> <MAC of device to connect>`<Maximum Transfer Unit of network/host (Optional, default 1500)>
 
 Example:
 
 `# ./wlan_kabel wlan0 eth0 00:22:15:49:e5:55`
+ # ./wlan_kabel wlan0 eth0 00:22:15:49:e5:55 1500
 
 You can then connect your computer to the proxy device with a patch cable and bring it up normally - it will work with DHCP, etc.
 
@@ -35,6 +36,27 @@ WLAN_Kabel has been tested on:
 
 -  ATH9K chipset with Ubuntu 10.10 
 -  Ralink RT2870 on a Raspberry Pi
+
+This fork:
+
+- rtl8821ce-dkms with LightDM Distro: Linux Mint 21.1 Vera base: Ubuntu 22.04 jammy
+- Intel(R) Ethernet Connection I217-LM with Windows 10 Pro Version:21H2
+
+## Speed Test (This Fork)
+1.
+    19.21 down  (within expected range)
+    0.12 up     (under expected range)
+2.
+    19.0 down   (within expected range)
+    0.14 up     (under expected range)
+
+## Changes Made By This Fork
+
+Added another argument, Maximum Transfer Unit (MTU).
+"send: Message too long"
+This is a quick fix to prevent wlan_kabel from crashing due to the target device trying to upload packets larger than the MTU of the network/host device.
+The new argument limits the packet size to prevent crashing from the target device trying to upload larger data packets.
+The Download speed is unaffected but the upload speed is greatly lower in my tests from the original.
 
 ## License
 
