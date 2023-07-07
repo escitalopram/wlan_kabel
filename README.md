@@ -23,7 +23,7 @@ You can compile WLAN_Kabel by just entering `make`. You will probably need make,
 
 To use WLAN_Kabel, you have to install it on the proxy device. Both the Wireless and the Ethernet adapter must be up, but not configured for any IP addresses. You can then start as root it like this:
 
-`# ./wlan_kabel <wlan-adapter> <ethernet-adapter> <MAC of device to connect>`<Maximum Transfer Unit of network/host (Optional, default 1500)>
+`# ./wlan_kabel <wlan-adapter> <ethernet-adapter> <MAC of device to connect> <Maximum Transfer Unit of network/host (Optional, default 1500)>`
 
 Example:
 
