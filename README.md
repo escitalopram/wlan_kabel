@@ -39,8 +39,8 @@ WLAN_Kabel has been tested on:
 
 This fork:
 
-- rtl8821ce-dkms with LightDM Distro: Linux Mint 21.1 Vera base: Ubuntu 22.04 jammy
-- Intel(R) Ethernet Connection I217-LM with Windows 10 Pro Version:21H2
+- Host: rtl8821ce-dkms with LightDM Distro: Linux Mint 21.1 Vera base: Ubuntu 22.04 jammy
+- Target: Intel(R) Ethernet Connection I217-LM with Windows 10 Pro Version:21H2
 
 ## Speed Test (This Fork)
 1.
