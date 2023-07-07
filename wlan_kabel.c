@@ -30,6 +30,9 @@ static int swlan;
 static int ethi;
 static int wlani;
 
+// Maximum Transfer Unit (MTU)
+static int mtu;
+
 // return interface index of given network interface
 static int retrieveifindex(char*name) {
 	int sock = socket( AF_INET , SOCK_DGRAM , 0 );
@@ -156,6 +159,27 @@ static void forward_packet_eth() {
                 	exit(-1);
 	}
 	if (is_forwardable_eth(buf,mylen)) {
+        if(mylen > mtu+14) {
+            int tmplen = 0;
+            int index = 14;
+            adjust_arp(buf, mylen);
+            memcpy(&(sinfo.sll_addr),buf,6);
+            sinfo.sll_ifindex=wlani;
+            while(index < mylen) {
+                tmplen = mylen-index;
+                if(tmplen > mtu) {
+                    tmplen = mtu;
+                }
+                int sendlen = sendto(swlan, &buf[index], tmplen,0,(const struct sockaddr *)&sinfo,sizeof(sinfo));
+                if(sendlen<0) {
+        			perror("send");
+        			exit(-1);
+        		}
+                index += tmplen;
+                
+            }
+            
+        } else {
 		adjust_arp(buf,mylen);
 		memcpy(&(sinfo.sll_addr),buf,6);
 		sinfo.sll_ifindex=wlani;
@@ -164,12 +188,14 @@ static void forward_packet_eth() {
 			perror("send");
 			exit(-1);
 		}
+    }
 	}
 }
 
 int main(int argc, char* argv[]) {
-	if (argc!=4) {
-		printf("error: need 3 arguments: <wlan_if> <lan_if> <dest_mac>");
+    printf("%i\n", argc);
+	if (argc < 4) {
+		printf("error: need 3 arguments: <wlan_if> <lan_if> <dest_mac> <MTU (Little endian Hex only)(Optional)>");
 	}
 
 	swlan = get_rawsocket(argv[1],SOCK_DGRAM);
@@ -178,9 +204,16 @@ int main(int argc, char* argv[]) {
 	wlani = retrieveifindex(argv[1]);
 	parsemac(argv[3],destmac);
 	readmac(argv[1],wlanmac);
+    
+    if(argc == 5) {
+        mtu = atoi(argv[4]);
+    } else {
+        mtu = 1500;
+    }
+
 	printmac(destmac,"Destination MAC");
 	printmac(wlanmac,"WLAN MAC");
-
+    printf("MTU Size: %i\n", mtu);
 	while(1){
 		fd_set fsr;
 		FD_ZERO(&fsr);
